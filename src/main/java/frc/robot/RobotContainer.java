@@ -85,6 +85,7 @@ public class RobotContainer {
       .onTrue(new ArmSetPosCommand(ArmSubsystem.ArmPos.kHome));
     new JoystickButton(m_mechController, Button.kB.value)
       .onTrue(new ArmSetPosCommand(ArmSubsystem.ArmPos.kExtend));
+      
   }
 
   /**

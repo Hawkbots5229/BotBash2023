@@ -70,6 +70,8 @@ public final class Constants {
     public static final double rotationScale = 0.5;
     public static final double autoRotateOutScale = 1.0;
     public static final double MetersPerInch = 1/39.37008;
+    public static final int kCurrentLimit = 40;
+    public static final double kOpenLoopRampRate = 3;
 
     public static final boolean kGyroReversed = true;
 
@@ -187,6 +189,7 @@ public final class Constants {
     public static final IdleMode kIdleMode = IdleMode.kBrake;
     public static final double maxVoltage = 12.0;
     public static final int kCurrentLimit = 40;
+    public static final double kOpenLoopRampRate = 10;
    
     public static final double kGearBoxRatio = (1/12.75);
     public static final double kSprocketRatio = (22.0/38.0); 

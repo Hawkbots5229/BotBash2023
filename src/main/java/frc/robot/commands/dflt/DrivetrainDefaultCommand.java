@@ -14,9 +14,9 @@ import frc.robot.subsystems.DrivetrainSubsystem;;
 
 public class DrivetrainDefaultCommand extends CommandBase {
     // Slew rate limiters to make joystick inputs more gentle; 1/2 sec from 0 to 1.
-    private final SlewRateLimiter m_xspeedLimiter = new SlewRateLimiter(1);
-    private final SlewRateLimiter m_yspeedLimiter = new SlewRateLimiter(1);
-    private final SlewRateLimiter m_rotLimiter = new SlewRateLimiter(1);
+    private final SlewRateLimiter m_xspeedLimiter = new SlewRateLimiter(10);
+    private final SlewRateLimiter m_yspeedLimiter = new SlewRateLimiter(10);
+    private final SlewRateLimiter m_rotLimiter = new SlewRateLimiter(10);
 
     PIDController m_rotationPIDController = new PIDController(DriveConstants.rotKp, DriveConstants.rotKi, DriveConstants.rotKd);
     DrivetrainSubsystem drive;
@@ -57,7 +57,7 @@ public class DrivetrainDefaultCommand extends CommandBase {
      var rot =
         -m_rotLimiter.calculate(MathUtil.applyDeadband(RobotContainer.m_driverController.getRightX(), DriveConstants.stickDeadband))
             * DriveConstants.maxAngularSpeed;
-
+            
     RobotContainer.m_robotDrive.drive(xSpeed * DriveConstants.speedScale, ySpeed * DriveConstants.speedScale, rot*DriveConstants.rotationScale,RobotContainer.m_robotDrive.isFieldRelative,true);
   }
 

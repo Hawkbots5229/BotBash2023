@@ -19,6 +19,7 @@ import com.ctre.phoenix.sensors.CANCoder;
 import com.ctre.phoenix.sensors.AbsoluteSensorRange;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.revrobotics.CANSparkMax.IdleMode;
 
 import frc.robot.Constants.DriveConstants;;
@@ -53,6 +54,8 @@ public class SwerveModule {
     m_driveMotor = new WPI_TalonFX(swerveData.driveCANId);
     m_turningMotor = new CANSparkMax(swerveData.steerCANId, MotorType.kBrushless);
 
+    m_driveMotor.configFactoryDefault();
+
     if(swerveData.useAbsEnc) {
       m_turningEncoderAbs = new CANCoder(swerveData.encoderCANId, "CANivore");
       m_turningEncoderAbs.configAbsoluteSensorRange(AbsoluteSensorRange.Unsigned_0_to_360);
@@ -73,6 +76,8 @@ public class SwerveModule {
     
     m_driveMotor.setNeutralMode(NeutralMode.Coast);
     m_driveMotor.setSelectedSensorPosition(0);
+    m_driveMotor.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, DriveConstants.kCurrentLimit, 80, 0.5));
+    m_driveMotor.configOpenloopRamp(DriveConstants.kOpenLoopRampRate);
 
     m_turningMotor.enableVoltageCompensation(DriveConstants.maxVoltage);
 
@@ -176,6 +181,7 @@ public class SwerveModule {
     }
 
     if(!disableDrive){
+      //System.out.println(state.speedMetersPerSecond / DriveConstants.maxSpeed);
       m_driveMotor.set(ControlMode.PercentOutput, state.speedMetersPerSecond / DriveConstants.maxSpeed);
     }
     // Calculate the turning motor output from the turning PID controller.
