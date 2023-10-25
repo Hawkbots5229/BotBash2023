@@ -155,14 +155,14 @@ public final class Constants {
 
   public static class IntakeConstants{
 
-    public static final int kLeftMotorPort = 20;
-    public static final int kRightMotorPort = 21;
+    public static final int kLeftMotorPort = 22;
+    public static final int kRightMotorPort = 23;
 
     public static final boolean kLeftMotorIntverted = true;
     public static final boolean kRightMotorInverted = false;
     public static final IdleMode kIdleMode = IdleMode.kBrake;
     public static final double maxVoltage = 12.0;
-    public static final int kCurrentLimit = 40;
+    public static final int kCurrentLimit = 30;
     public static final double kClosedLoopRampRate = 1.5;
     public static final double kOpenLoopRampRate = 40;
     public static final double kMaxOutput = 0.9;
@@ -181,10 +181,10 @@ public final class Constants {
 
   public static class ArmPivotConstants {
 
-    public static final int kFrontMotorPort = 22;
-    public static final int kRearMotorPort = 23;
+    //public static final int kFrontMotorPort = 22;
+    public static final int kRearMotorPort = 20;
 
-    public static final boolean kFrontMotorInverted = false;
+    //public static final boolean kFrontMotorInverted = false;
     public static final boolean kRearMotorInverted = false;
     public static final IdleMode kIdleMode = IdleMode.kBrake;
     public static final double maxVoltage = 12.0;

@@ -18,13 +18,13 @@ public class ArmSubsystem extends SubsystemBase {
 
   public enum ArmPos{kHome, kExtend};
 
-  private final CANSparkMax m_front = 
-    new CANSparkMax(ArmPivotConstants.kFrontMotorPort, MotorType.kBrushless);
+  //private final CANSparkMax m_front = 
+  //  new CANSparkMax(ArmPivotConstants.kFrontMotorPort, MotorType.kBrushless);
 
   private final CANSparkMax m_rear =
     new CANSparkMax(ArmPivotConstants.kRearMotorPort, MotorType.kBrushless);
 
-  private final RelativeEncoder m_frontEncoder = m_front.getEncoder();
+  //private final RelativeEncoder m_frontEncoder = m_front.getEncoder();
 
   private final RelativeEncoder m_rearEncoder = m_rear.getEncoder();
 
@@ -41,16 +41,16 @@ public class ArmSubsystem extends SubsystemBase {
   /** Creates a new ArmPivotSubsystem. */
   public ArmSubsystem() {
 
-    m_front.setInverted(ArmPivotConstants.kFrontMotorInverted);
+    //m_front.setInverted(ArmPivotConstants.kFrontMotorInverted);
     m_rear.setInverted(ArmPivotConstants.kRearMotorInverted);
-    m_front.setIdleMode(ArmPivotConstants.kIdleMode);
+    //m_front.setIdleMode(ArmPivotConstants.kIdleMode);
     m_rear.setIdleMode(ArmPivotConstants.kIdleMode);
-    m_front.enableVoltageCompensation(ArmPivotConstants.maxVoltage);
+    //m_front.enableVoltageCompensation(ArmPivotConstants.maxVoltage);
     m_rear.enableVoltageCompensation(ArmPivotConstants.maxVoltage);
-    m_front.setSmartCurrentLimit(ArmPivotConstants.kCurrentLimit);
+    //m_front.setSmartCurrentLimit(ArmPivotConstants.kCurrentLimit);
     m_rear.setSmartCurrentLimit(ArmPivotConstants.kCurrentLimit);
 
-    m_front.follow(m_rear);
+    //m_front.follow(m_rear);
 
     resetEncoders();
 
@@ -60,7 +60,7 @@ public class ArmSubsystem extends SubsystemBase {
   /** Resets the drive encoders to currently read a position of 0. */
   public void resetEncoders() {
 
-    m_frontEncoder.setPosition(0);
+    //m_frontEncoder.setPosition(0);
     m_rearEncoder.setPosition(0);
   }
 
@@ -76,7 +76,7 @@ public class ArmSubsystem extends SubsystemBase {
   /** Stops all drive motors */
   public void stopMotors() {
 
-    m_front.stopMotor();
+    //m_front.stopMotor();
     m_rear.stopMotor();
   }
 
