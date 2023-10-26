@@ -4,23 +4,26 @@
 
 package frc.robot.library;
 
+import frc.robot.Constants.ArmPivotConstants;
 import frc.robot.subsystems.ArmSubsystem;
 
 /** Add your docs here. */
 public class ArmController {
 
     private double targetPosition;
+    private ArmSubsystem.ArmPos targetPositionEnum;
 
     public ArmController(ArmSubsystem.ArmPos pos) {
         this.targetPosition = updTargetPosition(pos); 
     }
 
     private double updTargetPosition(ArmSubsystem.ArmPos pos) {
+        this.targetPositionEnum = pos;
         switch(pos) {
             case kHome: 
-                return 0;
+                return Math.toRadians(ArmPivotConstants.kHomeLoc);
             case kExtend: 
-                return 36; //40
+                return Math.toRadians(ArmPivotConstants.kExtendLoc);
             default:
                 throw new AssertionError("Illegal value: " + pos);   
         }
@@ -32,5 +35,9 @@ public class ArmController {
 
     public double getTargetPosition() {
         return this.targetPosition;
+    }
+
+    public ArmSubsystem.ArmPos getTargetEnum() {
+        return targetPositionEnum;
     }
 }

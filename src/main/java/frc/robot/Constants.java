@@ -158,8 +158,8 @@ public final class Constants {
     public static final int kLeftMotorPort = 22;
     public static final int kRightMotorPort = 23;
 
-    public static final boolean kLeftMotorIntverted = true;
-    public static final boolean kRightMotorInverted = false;
+    public static final boolean kLeftMotorIntverted = false;
+    public static final boolean kRightMotorInverted = true;
     public static final IdleMode kIdleMode = IdleMode.kBrake;
     public static final double maxVoltage = 12.0;
     public static final int kCurrentLimit = 30;
@@ -185,23 +185,26 @@ public final class Constants {
     public static final int kRearMotorPort = 20;
 
     //public static final boolean kFrontMotorInverted = false;
-    public static final boolean kRearMotorInverted = false;
-    public static final IdleMode kIdleMode = IdleMode.kBrake;
+    public static final boolean kRearMotorInverted = true;
+    public static final IdleMode kIdleMode = IdleMode.kCoast;
     public static final double maxVoltage = 12.0;
     public static final int kCurrentLimit = 40;
     public static final double kOpenLoopRampRate = 10;
    
-    public static final double kGearBoxRatio = (1/12.75);
-    public static final double kSprocketRatio = (22.0/38.0); 
+    public static final double kGearBoxRatio = (1/100.0);
+    public static final double kSprocketRatio = (22.0/60.0); 
     public static final double kEncoderRevToArmRads = kGearBoxRatio*kSprocketRatio*2*Math.PI;
 
-    public static final double kPPos = 0.41; //0.5
+    public static final double kPPos = 0.5;
     public static final double kIPos= 0.01;
     public static final double kDPos = 0;
-    public static final double kPosErrTolerance = 10;
+    public static final double kPosErrTolerance = 1;
 
     public static final double kMaxVel = Math.PI; //RadPerSec
     public static final double kMaxAcc = Math.pow(kMaxVel,2);; //RadPerSecSqrd
+
+    public static final double kHomeLoc = 0.0;
+    public static final double kExtendLoc = 129.0;
   }
 
   public static final class AutoConstants {

@@ -41,6 +41,8 @@ public class ArmSubsystem extends SubsystemBase {
   /** Creates a new ArmPivotSubsystem. */
   public ArmSubsystem() {
 
+    m_rear.restoreFactoryDefaults();
+
     //m_front.setInverted(ArmPivotConstants.kFrontMotorInverted);
     m_rear.setInverted(ArmPivotConstants.kRearMotorInverted);
     //m_front.setIdleMode(ArmPivotConstants.kIdleMode);
@@ -70,7 +72,7 @@ public class ArmSubsystem extends SubsystemBase {
   }
 
   public double getAngle() {
-    return m_rearEncoder.getPosition() / ArmPivotConstants.kEncoderRevToArmRads;
+    return m_rearEncoder.getPosition() * ArmPivotConstants.kEncoderRevToArmRads;
   }
 
   /** Stops all drive motors */
@@ -87,5 +89,6 @@ public class ArmSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("ArmAngle", Math.toDegrees(getAngle()));
   }
 }

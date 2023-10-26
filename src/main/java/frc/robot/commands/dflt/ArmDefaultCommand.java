@@ -6,6 +6,7 @@ package frc.robot.commands.dflt;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
+import frc.robot.Constants.ArmPivotConstants;
 import frc.robot.subsystems.ArmSubsystem;
 
 public class ArmDefaultCommand extends CommandBase {
@@ -25,7 +26,15 @@ public class ArmDefaultCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    s_robotArm.setAngle(RobotContainer.l_armPos.getTargetPosition());
+    if((s_robotArm.getAngle() >= ArmPivotConstants.kExtendLoc && RobotContainer.l_armPos.getTargetEnum() == ArmSubsystem.ArmPos.kExtend) ||
+       (s_robotArm.getAngle() <= ArmPivotConstants.kHomeLoc && RobotContainer.l_armPos.getTargetEnum() == ArmSubsystem.ArmPos.kHome)) {
+      
+      s_robotArm.stopMotors();
+    }
+    else {
+      s_robotArm.setAngle(RobotContainer.l_armPos.getTargetPosition());
+    }
+    
   }
 
   // Called once the command ends or is interrupted.
