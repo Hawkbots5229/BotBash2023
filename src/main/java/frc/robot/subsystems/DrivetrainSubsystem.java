@@ -122,6 +122,13 @@ public class DrivetrainSubsystem extends SubsystemBase {
     m_rearRight.resetEncoders();
   }
 
+  public void restDriveEncoders() {
+    m_frontLeft.resetDriveEncoders();
+    m_rearLeft.resetDriveEncoders();
+    m_frontRight.resetDriveEncoders();
+    m_rearRight.resetDriveEncoders();
+  }
+
   /** Zeroes the heading of the robot. */
   public void zeroHeading() {
     m_gyro.reset();

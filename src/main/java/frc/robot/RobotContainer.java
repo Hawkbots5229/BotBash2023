@@ -17,6 +17,7 @@ import frc.robot.library.ArmController;
 import frc.robot.commands.ArmSetPosCommand;
 import frc.robot.commands.IntakeSetSpdCommand;
 import frc.robot.commands.auton.AutonomousDriveStop;
+import frc.robot.commands.auton.tasks.AutonomousChargeLine;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -51,12 +52,14 @@ public class RobotContainer {
   public RobotContainer() {
 
     CameraServer.startAutomaticCapture("Drive Camera", 0);
+    CameraServer.startAutomaticCapture("Claw Camera", 1);
     
     // Configure the button bindings
     configureButtonBindings();
 
     // Setup SmartDashboard Auton options
     sc_autonSelect.setDefaultOption("Don't Move", new AutonomousDriveStop(m_robotDrive));
+    sc_autonSelect.addOption("Balance", new AutonomousChargeLine(m_robotDrive, m_robotIntake));
     SmartDashboard.putData("Auton Selection", sc_autonSelect);
 
     // Configure default commands

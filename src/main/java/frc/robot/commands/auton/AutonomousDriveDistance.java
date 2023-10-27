@@ -27,7 +27,7 @@ public class AutonomousDriveDistance extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    s_robotDrive.resetEncoders();
+    s_robotDrive.restDriveEncoders();
 
   }
 
@@ -35,7 +35,7 @@ public class AutonomousDriveDistance extends CommandBase {
   @Override
   public void execute() {
     
-    s_robotDrive.drive(speed, 0, 0, false, true);
+    s_robotDrive.drive(speed, 0, 0.01, false, true);
   }
 
   // Called once the command ends or is interrupted.
