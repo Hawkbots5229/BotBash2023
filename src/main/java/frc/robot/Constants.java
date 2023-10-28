@@ -164,8 +164,8 @@ public final class Constants {
     public static final double maxVoltage = 12.0;
     public static final int kCurrentLimit = 30;
     public static final double kClosedLoopRampRate = 1.5;
-    public static final double kOpenLoopRampRate = 40;
-    public static final double kMaxOutput = 0.9;
+    public static final double kOpenLoopRampRate = 0;
+    public static final double kMaxOutput = 1.0;
         
     public static final double kGearBoxRatio = 1/7.0;
     public static final double kEncoderRpmToWheelRpm = kGearBoxRatio;
@@ -205,6 +205,7 @@ public final class Constants {
 
     public static final double kHomeLoc = 0.0;
     public static final double kExtendLoc = 129.0;
+    public static final double kMidLoc = 60.0;
   }
 
   public static final class AutoConstants {

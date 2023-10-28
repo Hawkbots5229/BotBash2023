@@ -74,7 +74,7 @@ public class SwerveModule {
 
     m_driveMotor.enableVoltageCompensation(true);
     
-    m_driveMotor.setNeutralMode(NeutralMode.Coast);
+    m_driveMotor.setNeutralMode(NeutralMode.Brake);
     m_driveMotor.setSelectedSensorPosition(0);
     m_driveMotor.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, DriveConstants.kCurrentLimit, 80, 0.5));
     m_driveMotor.configOpenloopRamp(DriveConstants.kOpenLoopRampRate);
@@ -120,7 +120,7 @@ public class SwerveModule {
   public double getDriveDistanceMeters(){
     final double dis = m_driveMotor.getSelectedSensorPosition();
     final double meters = dis / SwerveConstants.driveDistanceCntsPMeter;
-    return meters;
+    return Math.abs(meters);
   }
 
   public double getDriveDistanceInches(){

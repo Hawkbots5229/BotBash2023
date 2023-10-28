@@ -18,6 +18,7 @@ import frc.robot.commands.ArmSetPosCommand;
 import frc.robot.commands.IntakeSetSpdCommand;
 import frc.robot.commands.auton.AutonomousDriveStop;
 import frc.robot.commands.auton.tasks.AutonomousChargeLine;
+import frc.robot.commands.auton.tasks.AutonomousCrossLine;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -51,8 +52,8 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
-    CameraServer.startAutomaticCapture("Drive Camera", 0);
-    CameraServer.startAutomaticCapture("Claw Camera", 1);
+    CameraServer.startAutomaticCapture("Claw Camera", 0);
+    CameraServer.startAutomaticCapture("Drive Camera", 1);
     
     // Configure the button bindings
     configureButtonBindings();
@@ -60,6 +61,7 @@ public class RobotContainer {
     // Setup SmartDashboard Auton options
     sc_autonSelect.setDefaultOption("Don't Move", new AutonomousDriveStop(m_robotDrive));
     sc_autonSelect.addOption("Balance", new AutonomousChargeLine(m_robotDrive, m_robotIntake));
+    sc_autonSelect.addOption("CrossLine", new AutonomousCrossLine(m_robotDrive, m_robotIntake));
     SmartDashboard.putData("Auton Selection", sc_autonSelect);
 
     // Configure default commands
@@ -84,10 +86,12 @@ public class RobotContainer {
       .onTrue(new IntakeSetSpdCommand(m_robotIntake, IntakeSubsystem.intakeDir.kOut))
       .onFalse(new IntakeSetSpdCommand(m_robotIntake, IntakeSubsystem.intakeDir.kOff));
 
-    new JoystickButton(m_mechController, Button.kA.value)
+    new JoystickButton(m_mechController, Button.kY.value)
       .onTrue(new ArmSetPosCommand(ArmSubsystem.ArmPos.kHome));
-    new JoystickButton(m_mechController, Button.kB.value)
+    new JoystickButton(m_mechController, Button.kA.value)
       .onTrue(new ArmSetPosCommand(ArmSubsystem.ArmPos.kExtend));
+    new JoystickButton(m_mechController, Button.kX.value)
+      .onTrue(new ArmSetPosCommand(ArmSubsystem.ArmPos.kMid));
       
   }
 

@@ -24,6 +24,8 @@ public class ArmController {
                 return Math.toRadians(ArmPivotConstants.kHomeLoc);
             case kExtend: 
                 return Math.toRadians(ArmPivotConstants.kExtendLoc);
+            case kMid:
+                return Math.toRadians(ArmPivotConstants.kMidLoc);
             default:
                 throw new AssertionError("Illegal value: " + pos);   
         }
