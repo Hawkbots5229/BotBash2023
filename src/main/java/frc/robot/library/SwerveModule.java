@@ -195,5 +195,6 @@ public class SwerveModule {
     SmartDashboard.putNumber(m_data.name + "SteerMotorAngle", getSteerMotorAngle());
     //SmartDashboard.putNumber(m_data.name + "CANCoderAngle", Math.toDegrees(getSwerveAngle()));
     SmartDashboard.putNumber(m_data.name + "DriveDistance", getDriveDistanceInches());
+    SmartDashboard.putNumber(m_data.name + "DriveVelocity", getDriveVelocity());
   }
 }

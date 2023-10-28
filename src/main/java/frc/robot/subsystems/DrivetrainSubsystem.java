@@ -199,9 +199,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
     // Update the odometry in the periodic block
     updateOdometry();
 
-    SmartDashboard.putNumber("RobotAngle", getRobotAngle360());
-    SmartDashboard.putBoolean("Relative ", isFieldRelative);
-    SmartDashboard.putNumber("RobotAngle360", getRobotAngle());
+    //SmartDashboard.putNumber("RobotAngle", getRobotAngle360());
+    //SmartDashboard.putBoolean("Relative ", isFieldRelative);
+    //SmartDashboard.putNumber("RobotAngle360", getRobotAngle());
     SmartDashboard.putNumber("RobotPitch", getRobotPitch());
     m_frontLeft.sendData();
     m_frontRight.sendData();

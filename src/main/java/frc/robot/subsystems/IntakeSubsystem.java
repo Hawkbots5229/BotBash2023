@@ -36,6 +36,7 @@ public class IntakeSubsystem extends SubsystemBase {
     m_left.setSmartCurrentLimit(IntakeConstants.kCurrentLimit);
     m_left.setClosedLoopRampRate(IntakeConstants.kClosedLoopRampRate);
     m_left.setOpenLoopRampRate(IntakeConstants.kOpenLoopRampRate);
+    m_left.enableVoltageCompensation(IntakeConstants.maxVoltage);
   
     
     m_right.restoreFactoryDefaults();
@@ -44,6 +45,7 @@ public class IntakeSubsystem extends SubsystemBase {
     m_right.setSecondaryCurrentLimit(IntakeConstants.kCurrentLimit);
     m_right.setClosedLoopRampRate(IntakeConstants.kClosedLoopRampRate);
     m_right.setOpenLoopRampRate(IntakeConstants.kOpenLoopRampRate);
+    m_right.enableVoltageCompensation(IntakeConstants.maxVoltage);
 
     //e_LeftEncoder.setVelocityConversionFactor(IntakeConstants.kEncoderRpmToWheelRpm);
     //e_RightEncoder.setVelocityConversionFactor(IntakeConstants.kEncoderRpmToWheelRpm);
