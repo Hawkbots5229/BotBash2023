@@ -74,7 +74,7 @@ public class SwerveModule {
 
     m_driveMotor.enableVoltageCompensation(true);
     
-    m_driveMotor.setNeutralMode(NeutralMode.Brake);
+    m_driveMotor.setNeutralMode(NeutralMode.Coast);
     m_driveMotor.setSelectedSensorPosition(0);
     m_driveMotor.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, DriveConstants.kCurrentLimit, 80, 0.5));
     m_driveMotor.configOpenloopRamp(DriveConstants.kOpenLoopRampRate);
