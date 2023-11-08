@@ -17,8 +17,9 @@ import frc.robot.library.ArmController;
 import frc.robot.commands.ArmSetPosCommand;
 import frc.robot.commands.IntakeSetSpdCommand;
 import frc.robot.commands.auton.AutonomousDriveStop;
-import frc.robot.commands.auton.tasks.AutonomousChargeLine;
+import frc.robot.commands.auton.tasks.AutonomousBalance;
 import frc.robot.commands.auton.tasks.AutonomousCrossLine;
+import frc.robot.commands.auton.tasks.AutonomousDontMove;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -59,8 +60,8 @@ public class RobotContainer {
     configureButtonBindings();
 
     // Setup SmartDashboard Auton options
-    sc_autonSelect.setDefaultOption("Don't Move", new AutonomousDriveStop(m_robotDrive));
-    sc_autonSelect.addOption("Balance", new AutonomousChargeLine(m_robotDrive, m_robotIntake));
+    sc_autonSelect.setDefaultOption("Don't Move", new AutonomousDontMove(m_robotDrive, m_robotIntake));
+    sc_autonSelect.addOption("Balance", new AutonomousBalance(m_robotDrive, m_robotIntake));
     sc_autonSelect.addOption("CrossLine", new AutonomousCrossLine(m_robotDrive, m_robotIntake));
     SmartDashboard.putData("Auton Selection", sc_autonSelect);
 
