@@ -52,6 +52,7 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
+    // Create camera servers
     CameraServer.startAutomaticCapture("Claw Camera", 0);
     CameraServer.startAutomaticCapture("Drive Camera", 1);
     
@@ -78,7 +79,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-    /** Intake Wheels: PovUp-Out PovDown-In */
+    // Intake Wheels: PovUp-Out PovDown-In
     new POVButton(m_mechController, OIConstants.kUpDPad)
       .onTrue(new IntakeSetSpdCommand(m_robotIntake, IntakeSubsystem.intakeDir.kIn))
       .onFalse(new IntakeSetSpdCommand(m_robotIntake, IntakeSubsystem.intakeDir.kOff));     
@@ -86,6 +87,7 @@ public class RobotContainer {
       .onTrue(new IntakeSetSpdCommand(m_robotIntake, IntakeSubsystem.intakeDir.kOut))
       .onFalse(new IntakeSetSpdCommand(m_robotIntake, IntakeSubsystem.intakeDir.kOff));
 
+    // Arm: Y-Up Position A-Down Position X-Middle Position
     new JoystickButton(m_mechController, Button.kY.value)
       .onTrue(new ArmSetPosCommand(ArmSubsystem.ArmPos.kHome));
     new JoystickButton(m_mechController, Button.kA.value)

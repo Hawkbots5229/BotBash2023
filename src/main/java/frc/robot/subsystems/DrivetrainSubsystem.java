@@ -191,7 +191,6 @@ public class DrivetrainSubsystem extends SubsystemBase {
     m_rearLeft.stopMotors();
     m_frontRight.stopMotors();
     m_rearRight.stopMotors();
-
   }
 
   @Override
@@ -203,6 +202,5 @@ public class DrivetrainSubsystem extends SubsystemBase {
     m_frontRight.sendData();
     m_rearLeft.sendData();
     m_rearRight.sendData();
-    
   }
 }

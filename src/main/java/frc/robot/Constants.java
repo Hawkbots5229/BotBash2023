@@ -153,28 +153,19 @@ public final class Constants {
     public static final IdleMode kIdleMode = IdleMode.kBrake;
     public static final double maxVoltage = 12.0;
     public static final int kCurrentLimit = 30;
-    public static final double kClosedLoopRampRate = 1.5;
     public static final double kOpenLoopRampRate = 0;
     public static final double kMaxOutput = 1.0;
         
     public static final double kGearBoxRatio = 1/7.0;
     public static final double kEncoderRpmToWheelRpm = kGearBoxRatio;
 
-    public static final int kVelPidSlot = 0;
-    public static final double kFVel = 1;
-    public static final double kPVel = 0;
-    public static final double kIVel = 0;
-    public static final double kDVel = 0;
-
     public static final double kMaxVel = 1; //Wheel RPM
   }
 
   public static class ArmPivotConstants {
 
-    //public static final int kFrontMotorPort = 22;
     public static final int kRearMotorPort = 20;
 
-    //public static final boolean kFrontMotorInverted = false;
     public static final boolean kRearMotorInverted = true;
     public static final IdleMode kIdleMode = IdleMode.kCoast;
     public static final double maxVoltage = 12.0;
