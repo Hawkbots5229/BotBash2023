@@ -25,35 +25,36 @@ public final class Constants {
     public static final int kFrontRightDriveMotorPort = 43;
     public static final int kRearRightDriveMotorPort = 41;
 
+    public static final boolean kFrontLeftDriveMotorReversed = true;
+    public static final boolean kRearLeftDriveMotorReversed = true;
+    public static final boolean kFrontRightDriveMotorReversed = true;
+    public static final boolean kRearRightDriveMotorReversed = true;
+
     public static final int kFrontLeftTurningMotorPort = 32;
     public static final int kRearLeftTurningMotorPort = 30;
     public static final int kFrontRightTurningMotorPort = 33;
     public static final int kRearRightTurningMotorPort = 31;
-
-    public static final int kFrontLeftTurningEncoderPorts = 52;
-    public static final int kRearLeftTurningEncoderPorts = 50;
-    public static final int kFrontRightTurningEncoderPorts = 53;
-    public static final int kRearRightTurningEncoderPorts = 51;
 
     public static final boolean kFrontLeftTurningMotorReversed = true;
     public static final boolean kRearLeftTurningMotorReversed = true;
     public static final boolean kFrontRightTurningMotorReversed = true;
     public static final boolean kRearRightTurningMotorReversed = true;
 
+    public static final int kFrontLeftTurningEncoderPorts = 52;
+    public static final int kRearLeftTurningEncoderPorts = 50;
+    public static final int kFrontRightTurningEncoderPorts = 53;
+    public static final int kRearRightTurningEncoderPorts = 51;
+
     public static final boolean kFrontLeftTurningEncoderReversed = false;
     public static final boolean kRearLeftTurningEncoderReversed = false;
     public static final boolean kFrontRightTurningEncoderReversed = false;
     public static final boolean kRearRightTurningEncoderReversed = false;
 
-    public static final boolean kFrontLeftDriveMotorReversed = true;
-    public static final boolean kRearLeftDriveMotorReversed = true;
-    public static final boolean kFrontRightDriveMotorReversed = true;
-    public static final boolean kRearRightDriveMotorReversed = true;
-
-    public static final double kTrackWidth = 0.43815;
     // Distance between centers of right and left wheels on robot
-    public static final double kWheelBase = 0.65405;
+    public static final double kTrackWidth = 0.43815;
     // Distance between front and back wheels on robot
+    public static final double kWheelBase = 0.65405;
+    
     public static final SwerveDriveKinematics kDriveKinematics =
         new SwerveDriveKinematics(
             new Translation2d(kWheelBase / 2, kTrackWidth / 2),
@@ -73,7 +74,6 @@ public final class Constants {
     public static final double stickDeadband = 0.1;
     public static final double speedScale = 0.6;
     public static final double rotationScale = 0.25;
-    public static final double autoRotateOutScale = 1.0;
     public static final double MetersPerInch = 1/39.37008;
     public static final int kCurrentLimit = 40;
     public static final double kOpenLoopRampRate = 0;
@@ -127,31 +127,12 @@ public final class Constants {
     public static final double steerKi = 0.15;
     public static final double steerKd = 0;
 
-    public static final double steerSMFKs = 0.0;
-    public static final double steerSMFKv = 0;
-    public static final double steerSMFKa = 0;
-
     public static final double steerMax_RadPS = Math.PI;
     public static final double steerMax_RadPSSq = Math.pow(steerMax_RadPS,2);
     public static final double steer_CntsPRad = 13.7/(2.0*Math.PI);
-
-    public static final double driveKp = 0.5;
-    public static final double driveKi = 1.5;
-    public static final double driveKd = 0;
-
-    public static final double driveSMFKs = 0.0;
-    public static final double driveSMFKv = DriveConstants.maxVoltage/DriveConstants.maxSpeed;
-    public static final double driveSMFKa = 0;
-
+    
     public static final double driveDistanceCntsPMeter = 49907;
     public static final double driveRawVelocityToMPS = 4990.68;
-
-    public static final double kSteerMotEncoderCountsPerRev = 2048.0;
-    public static final double kSteerRatio = 15.43;
-    public static final double kSteerMotCntsPerWheelDeg = (kSteerMotEncoderCountsPerRev * kSteerRatio) / 360;
-    public static final double kSteerMotCountsPerWheelRadian = (kSteerMotEncoderCountsPerRev / (2 * Math.PI)) * kSteerRatio;
-    public static final double kSteerEncoderCountsPerRev = 4096.0;
-    public static final double kSteerCountsPerRadian = kSteerEncoderCountsPerRev / 2 * Math.PI;
   }
 
   public static final class OIConstants {
@@ -215,9 +196,5 @@ public final class Constants {
     public static final double kHomeLoc = 0.0;
     public static final double kExtendLoc = 129.0;
     public static final double kMidLoc = 60.0;
-  }
-
-  public static final class AutoConstants {
-
   }
 }

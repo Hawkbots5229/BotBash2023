@@ -47,11 +47,6 @@ public class IntakeSubsystem extends SubsystemBase {
     m_right.setOpenLoopRampRate(IntakeConstants.kOpenLoopRampRate);
     m_right.enableVoltageCompensation(IntakeConstants.maxVoltage);
 
-    //e_LeftEncoder.setVelocityConversionFactor(IntakeConstants.kEncoderRpmToWheelRpm);
-    //e_RightEncoder.setVelocityConversionFactor(IntakeConstants.kEncoderRpmToWheelRpm);
-    
-    //m_right.follow(m_left);
-
     pid_LeftVelControl.setFF(IntakeConstants.kFVel, IntakeConstants.kVelPidSlot);
     pid_LeftVelControl.setP(IntakeConstants.kPVel, IntakeConstants.kVelPidSlot);
     pid_LeftVelControl.setD(IntakeConstants.kDVel, IntakeConstants.kVelPidSlot);

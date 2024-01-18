@@ -43,13 +43,9 @@ public class ArmSubsystem extends SubsystemBase {
 
     m_rear.restoreFactoryDefaults();
 
-    //m_front.setInverted(ArmPivotConstants.kFrontMotorInverted);
     m_rear.setInverted(ArmPivotConstants.kRearMotorInverted);
-    //m_front.setIdleMode(ArmPivotConstants.kIdleMode);
     m_rear.setIdleMode(ArmPivotConstants.kIdleMode);
-    //m_front.enableVoltageCompensation(ArmPivotConstants.maxVoltage);
     m_rear.enableVoltageCompensation(ArmPivotConstants.maxVoltage);
-    //m_front.setSmartCurrentLimit(ArmPivotConstants.kCurrentLimit);
     m_rear.setSmartCurrentLimit(ArmPivotConstants.kCurrentLimit);
 
     //m_front.follow(m_rear);
@@ -62,7 +58,6 @@ public class ArmSubsystem extends SubsystemBase {
   /** Resets the drive encoders to currently read a position of 0. */
   public void resetEncoders() {
 
-    //m_frontEncoder.setPosition(0);
     m_rearEncoder.setPosition(0);
   }
 
@@ -78,7 +73,6 @@ public class ArmSubsystem extends SubsystemBase {
   /** Stops all drive motors */
   public void stopMotors() {
 
-    //m_front.stopMotor();
     m_rear.stopMotor();
   }
 

@@ -108,8 +108,7 @@ public class SwerveModule {
 
   public void resetSteerSensors(){
     if(m_data.useAbsEnc) {
-      m_turningEncoderRel.setPosition(((getSwerveAngle()- Math.toRadians(m_data.steerAngleOffset))/(2*Math.PI)) * 13.7);
-      //m_turningEncoderRel.setPosition(0);
+      m_turningEncoderRel.setPosition((getSwerveAngle()- Math.toRadians(m_data.steerAngleOffset))*SwerveConstants.steer_CntsPRad);
     }
     else {
       m_turningEncoderRel.setPosition(0);

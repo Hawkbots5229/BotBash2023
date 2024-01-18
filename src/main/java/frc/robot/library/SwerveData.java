@@ -16,19 +16,21 @@ public class SwerveData {
     public Boolean steerEncoderInvert = false;
     public double steerAngleOffset = 0;
     public Boolean useAbsEnc = false;
+
     /***
      * 
      * @param name                 String name of this device
      * @param driveCANId           Drive CAN Id
-     * @param driveMotorInvert     Drive Invert of Motor
+     * @param driveMotorInvert     Invert Drive of Motor
      * @param steerCANId           Steer CAN Id
-     * @param steerMotorInvert     Steer Invert of Motor
-     * @param steerEncoderInvert   Steer encoder invert
+     * @param steerMotorInvert     Invert Steer of Motor
+     * @param steerEncoderInvert   Invert Steer Encoder
      * @param encoderCANId         Encoder CAN Id
      * @param encoderSernsorDir    Encoder Sensor Direction
      * @param steerAnalogOffset    Steer Analog Offset in Degrees.
      */
-    public SwerveData(String name, int driveCANId,  Boolean driveMotorInvert, int steerCANId, Boolean steerMotorInvert, int encoderCANId, Boolean steerEncoderInvert, double steerAnalogOffset, Boolean useAbsEnc ){
+    public SwerveData(String name, int driveCANId,  Boolean driveMotorInvert, int steerCANId, Boolean steerMotorInvert, 
+                                   int encoderCANId, Boolean steerEncoderInvert, double steerAnalogOffset, Boolean useAbsEnc ){
 
         this.name = name;
         this.driveCANId = driveCANId;
@@ -40,5 +42,4 @@ public class SwerveData {
         this.steerAngleOffset = steerAnalogOffset;
         this.useAbsEnc = useAbsEnc;
     }
-
 }
