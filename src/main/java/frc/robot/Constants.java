@@ -35,15 +35,20 @@ public final class Constants {
     public static final int kFrontRightTurningEncoderPorts = 53;
     public static final int kRearRightTurningEncoderPorts = 51;
 
-    public static final boolean kFrontLeftTurningEncoderReversed = true;
-    public static final boolean kRearLeftTurningEncoderReversed = true;
-    public static final boolean kFrontRightTurningEncoderReversed = true;
-    public static final boolean kRearRightTurningEncoderReversed = true;
+    public static final boolean kFrontLeftTurningMotorReversed = true;
+    public static final boolean kRearLeftTurningMotorReversed = true;
+    public static final boolean kFrontRightTurningMotorReversed = true;
+    public static final boolean kRearRightTurningMotorReversed = true;
 
-    public static final boolean kFrontLeftDriveEncoderReversed = true;
-    public static final boolean kRearLeftDriveEncoderReversed = true;
-    public static final boolean kFrontRightDriveEncoderReversed = true;
-    public static final boolean kRearRightDriveEncoderReversed = true;
+    public static final boolean kFrontLeftTurningEncoderReversed = false;
+    public static final boolean kRearLeftTurningEncoderReversed = false;
+    public static final boolean kFrontRightTurningEncoderReversed = false;
+    public static final boolean kRearRightTurningEncoderReversed = false;
+
+    public static final boolean kFrontLeftDriveMotorReversed = true;
+    public static final boolean kRearLeftDriveMotorReversed = true;
+    public static final boolean kFrontRightDriveMotorReversed = true;
+    public static final boolean kRearRightDriveMotorReversed = true;
 
     public static final double kTrackWidth = 0.43815;
     // Distance between centers of right and left wheels on robot
@@ -77,39 +82,43 @@ public final class Constants {
 
     public static final SwerveData SDFrontLeft = new SwerveData("FL", 
     kFrontLeftDriveMotorPort, 
-    kFrontLeftDriveEncoderReversed, 
+    kFrontLeftDriveMotorReversed, 
     kFrontLeftTurningMotorPort, 
-    kFrontLeftTurningEncoderReversed, 
+    kFrontLeftTurningMotorReversed, 
     kFrontLeftTurningEncoderPorts,
-    0,
-    false);
+    kFrontLeftTurningEncoderReversed,
+    304, //56
+    true);
 
   public static final SwerveData SDRearLeft = new SwerveData("RL", 
     kRearLeftDriveMotorPort, 
-    kRearLeftDriveEncoderReversed, 
+    kRearLeftDriveMotorReversed, 
     kRearLeftTurningMotorPort, 
-    kRearLeftTurningEncoderReversed, 
+    kRearLeftTurningMotorReversed, 
     kRearLeftTurningEncoderPorts,
-    0,
-    false);
+    kRearLeftTurningEncoderReversed,
+    290, //69
+    true);
 
   public static final SwerveData SDFrontRight = new SwerveData("FR", 
     kFrontRightDriveMotorPort, 
-    kFrontRightDriveEncoderReversed, 
+    kFrontRightDriveMotorReversed, 
     kFrontRightTurningMotorPort, 
-    kFrontRightTurningEncoderReversed, 
+    kFrontRightTurningMotorReversed, 
     kFrontRightTurningEncoderPorts,
-    0,
-    false);
+    kFrontRightTurningEncoderReversed,
+    357, //2.7
+    true);
 
   public static final SwerveData SDRearRight = new SwerveData("RR", 
     kRearRightDriveMotorPort, 
-    kRearRightDriveEncoderReversed, 
+    kRearRightDriveMotorReversed, 
     kRearRightTurningMotorPort, 
-    kRearRightTurningEncoderReversed, 
+    kRearRightTurningMotorReversed, 
     kRearRightTurningEncoderPorts, 
-    0,
-    false);
+    kRearRightTurningEncoderReversed,
+    328, //32
+    true);
   }
 
   public static final class SwerveConstants {

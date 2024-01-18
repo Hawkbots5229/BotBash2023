@@ -57,18 +57,18 @@ public class SwerveModule {
     m_driveMotor.configFactoryDefault();
 
     if(swerveData.useAbsEnc) {
-      m_turningEncoderAbs = new CANCoder(swerveData.encoderCANId, "CANivore");
+      m_turningEncoderAbs = new CANCoder(swerveData.encoderCANId);
       m_turningEncoderAbs.configAbsoluteSensorRange(AbsoluteSensorRange.Unsigned_0_to_360);
-      m_turningEncoderAbs.configSensorDirection(swerveData.steerInvertValue);
+      m_turningEncoderAbs.configSensorDirection(swerveData.steerEncoderInvert);
     }
     else {
       m_turningEncoderAbs = null;
     }
 
     m_turningEncoderRel = m_turningMotor.getEncoder();
-    m_turningMotor.setInverted(swerveData.steerInvertValue);
+    m_turningMotor.setInverted(swerveData.steerMotorInvert);
 
-    m_driveMotor.setInverted(swerveData.driveInvertValue);
+    m_driveMotor.setInverted(swerveData.driveMotorInvert);
     
     m_driveMotor.configVoltageCompSaturation(DriveConstants.maxVoltage);
 
@@ -98,13 +98,18 @@ public class SwerveModule {
     return Math.toRadians(m_turningEncoderAbs.getAbsolutePosition());
   }
 
+  public double getSteerAngle(){
+    return m_turningEncoderRel.getPosition();
+  }
+
   public void resetDriveEncoders(){
     m_driveMotor.setSelectedSensorPosition(0);
   }
 
   public void resetSteerSensors(){
     if(m_data.useAbsEnc) {
-      m_turningEncoderRel.setPosition((Math.toDegrees(getSwerveAngle())- m_data.steerAngleOffset)*SwerveConstants.kSteerMotCntsPerWheelDeg);
+      m_turningEncoderRel.setPosition(((getSwerveAngle()- Math.toRadians(m_data.steerAngleOffset))/(2*Math.PI)) * 13.7);
+      //m_turningEncoderRel.setPosition(0);
     }
     else {
       m_turningEncoderRel.setPosition(0);
@@ -192,8 +197,8 @@ public class SwerveModule {
   }
 
   public void sendData(){
-    SmartDashboard.putNumber(m_data.name + "SteerMotorAngle", getSteerMotorAngle());
-    //SmartDashboard.putNumber(m_data.name + "CANCoderAngle", Math.toDegrees(getSwerveAngle()));
+    SmartDashboard.putNumber(m_data.name + "SteerMotorAngle", getSteerAngle());
+    SmartDashboard.putNumber(m_data.name + "CANCoderAngle", Math.toDegrees(getSwerveAngle()));
     SmartDashboard.putNumber(m_data.name + "DriveDistance", getDriveDistanceInches());
     SmartDashboard.putNumber(m_data.name + "DriveVelocity", getDriveVelocity());
   }
