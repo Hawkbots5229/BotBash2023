@@ -34,8 +34,6 @@ public class DrivetrainSubsystem extends SubsystemBase {
   // The gyro sensor
   private final AHRS m_gyro = new AHRS(SPI.Port.kMXP);
 
-  public boolean isFieldRelative = false;
-
   // Odometry class for tracking robot pose
   SwerveDriveOdometry m_odometry =
       new SwerveDriveOdometry(
@@ -48,12 +46,24 @@ public class DrivetrainSubsystem extends SubsystemBase {
             m_rearRight.getPosition()
           });
 
+  // Sets if robot drive is field relative
+  public boolean isFieldRelative = false;
+
   /** Creates a new DriveSubsystem. */
   public DrivetrainSubsystem() {
     resetEncoders();
     zeroHeading();
   }
 
+  /** Updates the robot odometry.
+   * 
+   * @return Void
+   * @param None
+   * @implNote edu.wpi.first.math.kinematics.SwerveDriveOdometry.update()
+   * @implNote edu.wpi.first.wpilibj.interfaces.Gyro.getRotation2d()
+   * @implNote frc.robot.library.SwerveModule.getPosition()
+   * 
+   */
   public void updateOdometry() {
     m_odometry.update(
         m_gyro.getRotation2d(),
@@ -68,7 +78,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
   /**
    * Returns the currently-estimated pose of the robot.
    *
-   * @return The pose.
+   * @return The current pose of the robot (meters)
+   * @param None
+   * @implNote edu.wpi.first.math.kinematics.SwerveDriveOdometry.getPoseMeters()
+   * 
    */
   public Pose2d getPose() {
     return m_odometry.getPoseMeters();
@@ -77,7 +90,12 @@ public class DrivetrainSubsystem extends SubsystemBase {
   /**
    * Resets the odometry to the specified pose.
    *
+   * @return Void
    * @param pose The pose to which to set the odometry.
+   * @implNote edu.wpi.first.math.kinematics.SwerveDriveOdometry.resetPosition()
+   * @implNote edu.wpi.first.wpilibj.interfaces.Gyro.getRotation2d()
+   * @implNote frc.robot.library.SwerveModule.getPosition()
+   * 
    */
   public void resetOdometry(Pose2d pose) {
     m_odometry.resetPosition(
@@ -94,10 +112,13 @@ public class DrivetrainSubsystem extends SubsystemBase {
   /**
    * Method to drive the robot using joystick info.
    *
+   * @return Void
    * @param xSpeed Speed of the robot in the x direction (forward).
    * @param ySpeed Speed of the robot in the y direction (sideways).
    * @param rot Angular rate of the robot.
    * @param fieldRelative Whether the provided x and y speeds are relative to the field.
+   * @param optimize Whether to optimize wheel rotations
+   * 
    */
   public void drive(double xSpeed, double ySpeed, double rot, boolean isFieldRelative, boolean optimize) {
     this.isFieldRelative = isFieldRelative;
@@ -114,7 +135,13 @@ public class DrivetrainSubsystem extends SubsystemBase {
     m_rearRight.setDesiredState(swerveModuleStates[3], optimize, false, false);
   }
 
-  /** Resets the drive encoders to currently read a position of 0. */
+  /** Resets the swerve drive and turning motor encoders to a position of 0. 
+   * 
+   * @return Void
+   * @param None
+   * @implNote frc.robot.library.SwerveModule.resetEncoders()
+   * 
+  */
   public void resetEncoders() {
     m_frontLeft.resetEncoders();
     m_rearLeft.resetEncoders();
@@ -122,6 +149,13 @@ public class DrivetrainSubsystem extends SubsystemBase {
     m_rearRight.resetEncoders();
   }
 
+  /** Resets the swerve drive motor encoders to a position of 0. 
+   * 
+   * @return Void
+   * @param None
+   * @implNote frc.robot.library.SwerveModule.restDriveEncoders()
+   * 
+  */
   public void restDriveEncoders() {
     m_frontLeft.resetDriveEncoders();
     m_rearLeft.resetDriveEncoders();
@@ -129,63 +163,130 @@ public class DrivetrainSubsystem extends SubsystemBase {
     m_rearRight.resetDriveEncoders();
   }
 
-  /** Zeroes the heading of the robot. */
+  /** Zeroes the heading of the robot. 
+   * 
+   * @return Void
+   * @param None
+   * @implNote com.kauailabs.navx.frc.AHRS.reset()
+   */
   public void zeroHeading() {
     m_gyro.reset();
   }
 
-  /**
-   * Returns the heading of the robot.
-   *
-   * @return the robot's heading in degrees, from -180 to 180
+  /** Returns the heading of the robot.
+   * 
+   * @return The robot's heading from -180 to 180 (degrees)
+   * @param None
+   * @implNote edu.wpi.first.wpilibj.interfaces.Gyro.getRotation2d()
+   * @implNote edu.wpi.first.math.geometry.Rotation2d.getDegrees()
+   * 
    */
   public double getHeading() {
     return m_gyro.getRotation2d().getDegrees();
   }
 
-  /**
-   * Returns the turn rate of the robot.
-   *
-   * @return The turn rate of the robot, in degrees per second
+  /** Returns the turn rate of the robot. Direction of rate can be changed with DriveConstants
+   * 
+   * @return The turn rate of the robot(Deg/Sec)
+   * @param None
+   * @implNote com.kauailabs.navx.frc.AHRS.getRate()
+   * @implNote DriveConstants.kGyroReversed
+   * 
    */
   public double getTurnRate() {
     return m_gyro.getRate() * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
   }
 
-  /**
+  /** Gets distance the robot has driven in meters. This is the average of the distance each motor has driven.
    * 
-   * @return Distance in Inches
+   * @return Distance (meters)
+   * @param None
+   * @implNote frc.robot.library.SwerveModule.getDriveDistanceMeters()
+   * 
    */
   public double getDriveDistanceMeters(){
     double dis = (m_frontLeft.getDriveDistanceMeters() + m_rearLeft.getDriveDistanceMeters() + m_frontRight.getDriveDistanceMeters() + m_rearRight.getDriveDistanceMeters())/4.0;
     return dis;
   }
+
+  /** Gets distance the robot has driven in inches. This is the average of the distance each motor has driven.
+   * 
+   * @return Distance (meters)
+   * @param None
+   * @implNote getDriveDistanceMeters()
+   * @implNote DriveConstants.MetersPerInch
+   * 
+   */
   public double getDriveDistanceInches(){
     return getDriveDistanceMeters() / DriveConstants.MetersPerInch;
   }
 
+  /** Returns the angle of the robot. Direction of rate can be changed with DriveConstants
+   * 
+   * @return Returns the total accumulated yaw angle (Z Axis, in degrees)
+   * @param None
+   * @implNote com.kauailabs.navx.frc.AHRS.getAngle()
+   * @implNote DriveConstants.kGyroReversed
+   * 
+   */
   public double getRobotAngle() {
     return m_gyro.getAngle() * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
   }
 
+  /** Returns the angle of the robot in 360 degrees. Direction of rate can be changed with DriveConstants
+   * 
+   * @return Returns the yaw angle (Z Axis, in degrees)
+   * @param None
+   * @implNote com.kauailabs.navx.frc.AHRS.getAngle()
+   * @implNote DriveConstants.kGyroReversed
+   * 
+   */
   public double getRobotAngle360() {
     return (m_gyro.getAngle()%360) * (DriveConstants.kGyroReversed ? -1.0 : 1.0) ;
   }
 
+  /** Returns the pitch of the robot.
+   * 
+   * @return Returns the current pitch value (in degrees, from -180 to 180)
+   * @param None
+   * @implNote com.kauailabs.navx.frc.AHRS.getPitch()
+   * 
+   */
   public double getRobotPitch() {
 
     return m_gyro.getPitch(); 
   }
 
+  /** Returns the 2d rotaton of the robot.
+   * 
+   * @return 2D rotation object
+   * @param None
+   * @implNote getRobotAngle()
+   * @implNote edu.wpi.first.math.geometry.Rotation2d.fromDegrees()
+   * 
+   */
   public Rotation2d getRobotRotation2D(){
     double angle = getRobotAngle();
     return Rotation2d.fromDegrees(angle);
   }
 
+  /** Used to change whether the robot is field oriented.
+   * 
+   * @return Void
+   * @param frm Indicates if the robot should be field oriented
+   * 
+   */
   public void setFieldRelative(boolean frm){
     this.isFieldRelative = frm;
   }
 
+  /** Stops all the drive motors.
+   * 
+   * @return Void
+   * @param None
+   * @implNote com.revrobotics.CANSparkMax.stopMotor()
+   * 
+   */
   public void stopMotors(){
     m_frontLeft.stopMotors();
     m_rearLeft.stopMotors();
@@ -195,7 +296,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // Update the odometry in the periodic block
+    // This method will be called once per scheduler run
     updateOdometry();
     SmartDashboard.putNumber("RobotPitch", getRobotPitch());
     m_frontLeft.sendData();

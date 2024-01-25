@@ -42,29 +42,72 @@ public class IntakeSubsystem extends SubsystemBase {
     m_right.enableVoltageCompensation(IntakeConstants.maxVoltage);
   }
 
+  /** Sets the desired speed of the left and right intake motors.
+   * 
+   * @return Void
+   * @param output The speed to set. Value should be between -1.0 and 1.0.
+   * @implNote com.revrobotics.CANSparkMax.set()
+   * 
+   */
   public void setTargetOutput(double output) {
     m_left.set(output);
     m_right.set(output);
   }
 
+  /** Spins intake to grap items.
+   * 
+   * @return Void
+   * @param None
+   * @implNote setTargetOutput()
+   * @implNote IntakeConstants.kMaxOutput
+   * 
+   */
   public void wheelsIn() {
     setTargetOutput(IntakeConstants.kMaxOutput);
   }
-
+  
+  /** Spins intake to eject items.
+   * 
+   * @return Void
+   * @param None
+   * @implNote setTargetOutput()
+   * @implNote IntakeConstants.kMaxOutput
+   * 
+   */
   public void wheelsOut() {
     setTargetOutput(-IntakeConstants.kMaxOutput);
   }
 
+  /** Calculates the average motor velocities.
+   * 
+   * @return Velocity of intake motors (rev/sec)
+   * @param None
+   * @implNote com.revrobotics.RelativeEncoder.getVelocity()
+   * 
+   */
   public double getIntakeVel() {
     return (e_LeftEncoder.getVelocity() + e_RightEncoder.getVelocity())/2;
   }
 
+  /** Stops the left and right motors.
+   * 
+   * @return Void
+   * @param None
+   * @implNote com.revrobotics.CANSparkMax.stopMotor()
+   * 
+   */
   public void stopMotors() {
     m_left.stopMotor();
     m_right.stopMotor();
   }
 
-  /** Resets the drive encoders to currently read a position of 0. */
+  /** Sets the left and right intake encoders to a position of 0. 
+   * 
+   * @return Void
+   * @param None
+   * @implNote com.revrobotics.RelativeEncoder.setPosition()
+   * 
+   */
   public void resetEncoders() {
 
     e_LeftEncoder.setPosition(0);

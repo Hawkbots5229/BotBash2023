@@ -18,13 +18,8 @@ public class ArmSubsystem extends SubsystemBase {
 
   public enum ArmPos{kHome, kExtend, kMid};
 
-  //private final CANSparkMax m_front = 
-  //  new CANSparkMax(ArmPivotConstants.kFrontMotorPort, MotorType.kBrushless);
-
   private final CANSparkMax m_rear =
     new CANSparkMax(ArmPivotConstants.kRearMotorPort, MotorType.kBrushless);
-
-  //private final RelativeEncoder m_frontEncoder = m_front.getEncoder();
 
   private final RelativeEncoder m_rearEncoder = m_rear.getEncoder();
 
@@ -48,36 +43,59 @@ public class ArmSubsystem extends SubsystemBase {
     m_rear.enableVoltageCompensation(ArmPivotConstants.maxVoltage);
     m_rear.setSmartCurrentLimit(ArmPivotConstants.kCurrentLimit);
 
-    //m_front.follow(m_rear);
-
     resetEncoders();
 
     m_turningPIDController.setTolerance(ArmPivotConstants.kPosErrTolerance);
   }
 
-  /** Resets the drive encoders to currently read a position of 0. */
+  /** Sets the arm encoder to a position of 0. 
+   * 
+   * @return Void
+   * @param None
+   * @implNote com.revrobotics.RelativeEncoder.setPosition()
+   * 
+   */
   public void resetEncoders() {
 
     m_rearEncoder.setPosition(0);
   }
 
+  /** Gets the current angle of the arm.
+   * 
+   * @return Current arm angle (Radians)
+   * @param None
+   * @implNote com.revrobotics.RelativeEncoder.getPosition()
+   * @implNote ArmPivotConstants.kEncoderRevToArmRads
+  */
+  public double getAngle() {
+    return m_rearEncoder.getPosition() * ArmPivotConstants.kEncoderRevToArmRads;
+  }
+
+  /** Sets target angle of the arm.
+   *  Uses PID control to determine the motor speed requried to reach the target angle.
+   * 
+   * @return Void
+   * @param tarAngle The desired angle of the arm (Radians)
+   * @implNote edu.wpi.first.math.controller.ProfiledPIDController()
+   * @implNote getAngle()
+   * @implNote com.revrobotics.CANSparkMax.set()
+   * 
+   */
   public void setAngle(double tarAngle) {
     double output = m_turningPIDController.calculate(getAngle(), tarAngle);
     m_rear.set(output);
   }
 
-  public double getAngle() {
-    return m_rearEncoder.getPosition() * ArmPivotConstants.kEncoderRevToArmRads;
-  }
-
-  /** Stops all drive motors */
+  /** Stops the arm motor.
+   * 
+   * @return Void
+   * @param None
+   * @implNote com.revrobotics.CANSparkMax.stopMotor()
+   * 
+   */
   public void stopMotors() {
 
     m_rear.stopMotor();
-  }
-
-  public void sendData(){
-    SmartDashboard.putNumber("ArmAngle", Math.toDegrees(getAngle()));
   }
 
   @Override
