@@ -11,7 +11,11 @@ public class IntakeDefaultCommand extends CommandBase {
 
   IntakeSubsystem s_robotIntake;
 
-  /** Creates a new IntakeDefaultCommand. */
+  /** Creates a new Intake Default Command. 
+   * This command will keep the intake in its default state of off.
+   * 
+   * @param s_robotIntake Intake subsystem
+   */
   public IntakeDefaultCommand(IntakeSubsystem s_robotIntake) {
     addRequirements(s_robotIntake);
     this.s_robotIntake = s_robotIntake;

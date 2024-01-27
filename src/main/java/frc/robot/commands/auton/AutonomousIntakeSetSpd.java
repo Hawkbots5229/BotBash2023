@@ -15,7 +15,12 @@ public class AutonomousIntakeSetSpd extends CommandBase {
   private final double speed;
   private final double time;
 
-  /** Creates a new AutonomousOperateIntake. */
+  /** Creates a command to reset the swerve drive and steering encoders. 
+   * 
+   * @param s_intake Intake subsystem
+   * @param speed Desired speed of the intake wheels. Range of -1 to 1.
+   * @param time The length of time to run the intake. (Seconds)
+   */
   public AutonomousIntakeSetSpd(IntakeSubsystem s_intake, double speed, double time) {
 
     this.s_intake = s_intake;

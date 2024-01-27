@@ -17,7 +17,7 @@ public class SwerveData {
     public double steerAngleOffset = 0;
     public Boolean useAbsEnc = false;
 
-    /***
+    /** Construct to hold swerve data
      * 
      * @param name                 String name of this device
      * @param driveCANId           Drive CAN Id

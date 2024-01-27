@@ -13,11 +13,23 @@ import frc.robot.commands.auton.AutonomousResetEncoders;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 
-// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
-// information, see:
-// https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class AutonomousBalance extends SequentialCommandGroup {
-  /** Creates a new AutonomousHailMary. */
+  
+  /** Creates a command sequence to:
+   * 1. Reset drive and steering encoders
+   * 2. Eject cube for claw intake
+   * 3. Drive forward until the robot begins climbing the charging station
+   * 4. Drive forward until the robot is level
+   * 5. Drive forward until the robot begins decending from the charging station
+   * 6. Drive forward until the robot is level
+   * 7. Drive forward until the robot crosses the line
+   * 8. Drive backwards until the robot begins climbing the charging station
+   * 9. Drive backwards until the robot is level
+   * 10. Stop the robot
+   * 
+   * @param s_robotDrive Robot drivetrain subsystem
+   * @param s_intake Robot intake subsystem
+   */
   public AutonomousBalance(DrivetrainSubsystem s_robotDrive, IntakeSubsystem s_intake) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());

@@ -66,7 +66,7 @@ public class ArmSubsystem extends SubsystemBase {
    * @param None
    * @implNote com.revrobotics.RelativeEncoder.getPosition()
    * @implNote ArmPivotConstants.kEncoderRevToArmRads
-  */
+   */
   public double getAngle() {
     return m_rearEncoder.getPosition() * ArmPivotConstants.kEncoderRevToArmRads;
   }

@@ -13,7 +13,11 @@ public class AutonomousDriveDelay extends CommandBase {
   private final double delay;
   private final DrivetrainSubsystem s_robotDrive;
 
-  /** Creates a new AutonomousDelay. */
+  /** Creates a command to stop the robot for a period of time. 
+   * 
+   * @param s_robotDrive Drivetrain subsystem
+   * @param delay The amount of time to stop the robot. (Seconds)
+   */
   public AutonomousDriveDelay(DrivetrainSubsystem s_robotDrive, double delay) {
 
     this.s_robotDrive = s_robotDrive;

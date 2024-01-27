@@ -13,7 +13,12 @@ public class AutonomousDrivePitch extends CommandBase {
   private final double pitch;
   private final double speed;
 
-  /** Creates a new AutonomousPitch. */
+  /** Creates a command to drive the robot until its pitch is greater than a threshold. 
+   * 
+   * @param s_robotDrive Drivetrain subsystem
+   * @param pitch Pitch at which to stop driving the robot
+   * @param speed Speed to drive the robot. Range of -1 (Reverse) to 1 (Forward).
+   */
   public AutonomousDrivePitch(DrivetrainSubsystem s_robotDrive, double pitch, double speed) {
 
     this.s_robotDrive = s_robotDrive;
@@ -31,7 +36,6 @@ public class AutonomousDrivePitch extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
     s_robotDrive.drive(speed, 0, 0.02, false, true);
   }
 

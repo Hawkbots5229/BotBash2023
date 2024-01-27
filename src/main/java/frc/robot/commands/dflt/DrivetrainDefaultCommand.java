@@ -20,10 +20,15 @@ public class DrivetrainDefaultCommand extends CommandBase {
 
     PIDController m_rotationPIDController = new PIDController(DriveConstants.rotKp, DriveConstants.rotKi, DriveConstants.rotKd);
     DrivetrainSubsystem drive;
-  /** Creates a new DrivetrainDefaultCommand. */
-  public DrivetrainDefaultCommand(DrivetrainSubsystem _subsystem) {
-    addRequirements(_subsystem);
-    drive = _subsystem;
+
+  /** Creates a new Drivetrain Default Command. 
+   * This command contorls the motion of the robot via the joysticks.
+   * 
+   * @param s_robotDrive Robot drivetrain subsystem
+   */
+  public DrivetrainDefaultCommand(DrivetrainSubsystem s_robotDrive) {
+    addRequirements(s_robotDrive);
+    drive = s_robotDrive;
   }
 
   // Called when the command is initially scheduled.
@@ -63,9 +68,7 @@ public class DrivetrainDefaultCommand extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override

@@ -7,13 +7,14 @@ package frc.robot.commands.auton;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
-// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
-// information, see:
-// https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class AutonomousDriveStop extends InstantCommand {
 
   private final DrivetrainSubsystem s_robotDrive;
 
+  /** Creates a command to stop the swerve drive and steering motors and reset their encoders. 
+   * 
+   * @param s_robotDrive Drivetrain subsystem
+   */
   public AutonomousDriveStop(DrivetrainSubsystem s_robotDrive) {
 
     this.s_robotDrive = s_robotDrive;

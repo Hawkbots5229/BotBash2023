@@ -12,7 +12,12 @@ public class IntakeSetSpdCommand extends CommandBase {
   private final IntakeSubsystem s_robotIntake;
   private final IntakeSubsystem.intakeDir direction;
 
-  /** Creates a new ClawIntakeCommand. */
+  /** Creates a new Claw Intake Command.
+   * This command drives the intake wheels in a desired direction.
+   * 
+   * @param s_robotIntake Intake subsystem
+   * @param direction Direction the wheels should spin (Enumeration)
+   */
   public IntakeSetSpdCommand(IntakeSubsystem s_robotIntake, IntakeSubsystem.intakeDir direction) {
     addRequirements(s_robotIntake);
     this.s_robotIntake = s_robotIntake;

@@ -11,11 +11,16 @@ import frc.robot.commands.auton.AutonomousResetEncoders;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 
-// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
-// information, see:
-// https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class AutonomousDontMove extends SequentialCommandGroup {
-  /** Creates a new AutonomousDontMove. */
+
+  /** Creates a command sequence to:
+   * 1. Reset drive and steering encoders
+   * 2. Eject cube for claw intake
+   * 3. Stops the robot
+   * 
+   * @param s_robotDrive Robot drivetrain subsystem
+   * @param s_intake Robot intake subsystem
+   */
   public AutonomousDontMove(DrivetrainSubsystem s_robotDrive, IntakeSubsystem s_intake) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());

@@ -13,7 +13,11 @@ public class AutonomousArmSetPos extends CommandBase {
   private final ArmSubsystem s_robotArm;
   private final ArmSubsystem.ArmPos pos;
 
-  /** Creates a new AutonomousElevatorPivot. */
+   /** Creates a command to move the arm to a desired Location
+   * 
+   * @param s_robotArm Robot arm subsystem
+   * @param pos Desired location of the arm (Enumeration)
+   */
   public AutonomousArmSetPos(ArmSubsystem s_robotArm, ArmSubsystem.ArmPos pos) {
     
     this.s_robotArm = s_robotArm;
@@ -44,5 +48,5 @@ public class AutonomousArmSetPos extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-   return false;}
+    return false;}
 }

@@ -8,13 +8,15 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.ArmSubsystem;
 
-// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
-// information, see:
-// https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class ArmSetPosCommand extends InstantCommand {
 
   private final ArmSubsystem.ArmPos pos;
 
+  /** Creates a new Arm Set Position Command. 
+   * This command drives the arm to a desired Location.
+   * 
+   * @param pos Location of the arm (Enumeration)
+   */
   public ArmSetPosCommand(ArmSubsystem.ArmPos pos) {
     this.pos = pos;
   }

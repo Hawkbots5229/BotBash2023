@@ -13,7 +13,12 @@ public class AutonomousDriveDistance extends CommandBase {
   private final double distance;
   private final double speed;
 
-  /** Creates a new AutonomousDistance. */
+  /** Creates a command to drive the robot until its reached a desired distance. 
+   * 
+   * @param s_robotDrive Drivetrain subsystem
+   * @param distance Distance at which to stop driving the robot (Inches)
+   * @param speed Speed to drive the robot. Range of -1 (Reverse) to 1 (Forward).
+   */
   public AutonomousDriveDistance(DrivetrainSubsystem s_robotDrive, double distance, double speed) {
 
     this.s_robotDrive = s_robotDrive;

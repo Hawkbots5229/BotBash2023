@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.math.geometry.Translation2d;
@@ -62,6 +63,7 @@ public final class Constants {
             new Translation2d(-kWheelBase / 2, kTrackWidth / 2),
             new Translation2d(-kWheelBase / 2, -kTrackWidth / 2));
 
+    public static final NeutralMode driveMode = NeutralMode.Coast;
     public static final double maxVoltage = 12.0;
     public static final double maxSpeed = 4.36; // m/s
     public static final double maxAngularSpeed = Math.PI*4; // 1/2 Rotation/Sec

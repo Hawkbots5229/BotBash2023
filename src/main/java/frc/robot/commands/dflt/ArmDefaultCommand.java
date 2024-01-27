@@ -13,7 +13,11 @@ public class ArmDefaultCommand extends CommandBase {
 
   ArmSubsystem s_robotArm;
 
-  /** Creates a new ArmDefaultCommand. */
+  /** Creates a new Arm Default Command. 
+   * This command holds the arm at the desired location set in by the ArmSetPosCommand.
+   * 
+   * @param s_robotArm Robot arm subsystem
+   */
   public ArmDefaultCommand(ArmSubsystem s_robotArm) {
     addRequirements(s_robotArm);
     this.s_robotArm = s_robotArm;
@@ -33,8 +37,7 @@ public class ArmDefaultCommand extends CommandBase {
     }
     else {
       s_robotArm.setAngle(RobotContainer.l_armPos.getTargetPosition());
-    }
-    
+    } 
   }
 
   // Called once the command ends or is interrupted.
